@@ -5,6 +5,7 @@ pipeline {
         NETLIFY_SITE_ID = '90410b3f-1a42-46ac-8f58-e970b61609dd'
         // ID of the token in Jenkins credentials
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+        REACT_APP_VERSION = "1.0.$BUILD_ID"
     }
 
     stages {
@@ -86,7 +87,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = "${env.STAGING_URL}"
+                CI_ENVIRONMENT_URL = 'STAGING_URL_TO_BE_SET'
             }
 
             steps {
@@ -104,14 +105,6 @@ pipeline {
             post {
                 always {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Staging E2E', reportTitles: '', useWrapperFileDirectly: true])
-                }
-            }
-        }
-
-        stage('Approval') {
-            steps {
-                timeout(time: 15, unit: 'MINUTES') {
-                    input message: 'Do you wish to deploy to production?', ok: 'Yes, I am sure!'
                 }
             }
         }
