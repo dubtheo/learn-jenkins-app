@@ -29,7 +29,7 @@ pipeline {
                         echo "Hello S3!" > index.html
                         aws s3 cp index.html s3://$AWS_S3_BUCKET/index.html
                         sleep 5
-                        aws s3 ls
+                        aws s3 ls s3://$AWS_S3_BUCKET/
                     '''
                 }
             }
