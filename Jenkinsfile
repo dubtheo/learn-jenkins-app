@@ -104,7 +104,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'PUT YOUR NETLIFY SITE URL HERE'
+                CI_ENVIRONMENT_URL = 'https://leafy-swan-d41162.netlify.app/'
             }
 
             steps {
